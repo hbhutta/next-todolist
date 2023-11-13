@@ -13,7 +13,7 @@ export async function POST(request: any) {
   }
 }
 
-export async function GET(request: any) {
+export async function GET(request: any, title: String) {
   await connectMongoDB();
   const Tasks = await Task.find({});
   return NextResponse.json({ Tasks });

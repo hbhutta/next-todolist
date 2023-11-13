@@ -4,6 +4,7 @@ import React from "react";
 import { useState } from "react"; // eslint-disable-line
 import { TaskType } from "@/types/TaskType";
 import Task from "@/components/Task";
+import Board from "@/components/Board";
 
 export default async function Home() {
   // const router = useRouter();
@@ -73,7 +74,7 @@ export default async function Home() {
       <div className="flex-col align-middle justify-center p-3">
         {methods_elems}
       </div>
-      <div className="flex-col justify-center p-3">{tasks_elems}</div>
+      <Board/>
     </div>
   );
 }
