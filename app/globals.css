@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components {
+@layer components {
   .http-button {
-    @apply 
+    @apply text-2xl font-bold rounded-lg shadow-lg active:shadow-none p-3 mx-2
   }
-} */
+}
 
 
 /* :root {
