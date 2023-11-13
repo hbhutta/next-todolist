@@ -4,7 +4,7 @@
 
 @layer components {
   .http-button {
-    @apply text-2xl font-bold rounded-lg shadow-lg active:shadow-none p-3 mx-2
+    @apply text-2xl font-bold rounded-lg min-w-full my-2 shadow-sm active:opacity-95
   }
 }
 
