@@ -2,7 +2,7 @@
 
 import React from "react";
 import Board from "@/components/Board";
-import UpdateTaskModal from "@/components/updateTaskModal";
+import UpdateTaskPopUp from "@/components/updateTaskModal";
 
 export default function Home() {
   // const router = useRouter();

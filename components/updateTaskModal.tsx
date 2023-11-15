@@ -2,13 +2,28 @@
 import { useState } from "react";
 import * as React from "react";
 
-export default function UpdateTaskModal() {
-  const formButtons = ["Update", "Delete"].map((button) => (
+export default function UpdateTaskPopUp() {
+  const formButtons = [
+    {
+      text: "Update",
+      function: () => { // Update task (make PUT request)
+        // TODO
+      } 
+    },
+    {
+      text: "Cancel",
+      function: () => { // Cancel task update
+        
+      }
+    }
+  ]
+  const formButtonElems = formButtons.map((button) => (
     <input
       type="submit"
-      value={button}
+      value={button.text}
+      onClick={button.function}
       className={`form-button ${
-        button == "Update"
+        button.text == "Update"
           ? "bg-green-500 hover:bg-green-400 border-green-600"
           : "bg-red-500 hover:bg-red-400 border-red-600"
       }`}
@@ -16,17 +31,14 @@ export default function UpdateTaskModal() {
   ));
 
   /**
-   * Update modal layout:
+   * Update pop-up layout:
    * - Centered div
    * - Update and cancel buttons/inputs at the bottom end-justified
    */
 
   return (
     <form className="p-12 bg-slate-200 bg-opacity-50 flex w-1/2 h-fit m-auto rounded-lg border-2 border-zinc-200 flex-col justify-start center">
-      <label
-        id="task_title"
-        className="form-label"
-      >
+      <label id="task_title" className="form-label">
         Title your task:
       </label>
       <input
@@ -34,10 +46,7 @@ export default function UpdateTaskModal() {
         placeholder="Another chore..."
         className="form-input"
       ></input>
-      <label
-        id="task_description"
-        className="form-label"
-      >
+      <label id="task_description" className="form-label">
         Describe your task:
       </label>
       <input
@@ -45,7 +54,7 @@ export default function UpdateTaskModal() {
         placeholder="Wash the dishes before 6:00 pm"
         className="form-input"
       ></input>
-      <div className="form-button-container">{formButtons}</div>
+      <div className="form-button-container">{formButtonElems}</div>
     </form>
   );
 }

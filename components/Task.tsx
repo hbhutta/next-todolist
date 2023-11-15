@@ -2,9 +2,8 @@
 
 import { TaskType } from "@/types/TaskType";
 import { TfiTrash, TfiWrite } from "react-icons/tfi";
-import useState from "react";
+// import useState from "react";
 import * as React from "react";
-import UpdateTaskModal from "./updateTaskModal";
 
 export default function Task({ title, description }: TaskType) {
   // let [taskState, setTaskState] = useState.useState<TaskType>(
@@ -68,5 +67,12 @@ function displayUpdateModal() {
  * @returns
  */
 async function updateThisTask(taskTitle: String) {
-  return;
+  const title = taskTitle.replace('/\s/g', '_');
+  const res = await fetch('http://localhost:3000/api/tasks/' + title, {
+    method: "PUT"
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to update task titled ${title}`);
+  }
 }

@@ -1,4 +1,5 @@
 export interface TaskType {
     title: String,
-    description: String
+    description: String,
+    task_status: String
 }
