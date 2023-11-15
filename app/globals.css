@@ -3,9 +3,34 @@
 @tailwind utilities;
 
 @layer components {
+  
+  /* General */
+  .center {
+    @apply absolute top-0 bottom-0 left-0 right-0
+  }
+
+
   .http-button {
     @apply text-2xl font-bold rounded-lg min-w-full my-2 shadow-sm active:opacity-95 border-2 border-dotted border-black p-2
   }
+
+  /* Task update modal */
+  .form-button {
+    @apply hover:cursor-pointer text-xl font-semibold font-sans text-zinc-50 px-2 py-1 my-3 rounded-lg hover:shadow-lg duration-200 border-2
+  }
+
+  .form-label {
+    @apply text-xl font-semibold font-sans mb-2 mt-3
+  }
+
+  .form-input {
+    @apply rounded py-3 pl-3 w-full h-full text-sm
+  }
+
+  .form-button-container {
+    @apply flex justify-end gap-2
+  }
+
 }
 
 
