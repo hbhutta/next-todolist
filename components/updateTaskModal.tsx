@@ -6,17 +6,18 @@ export default function UpdateTaskPopUp() {
   const formButtons = [
     {
       text: "Update",
-      function: () => { // Update task (make PUT request)
+      function: () => {
+        // Update task (make PUT request)
         // TODO
-      } 
+      },
     },
     {
       text: "Cancel",
-      function: () => { // Cancel task update
-        
-      }
-    }
-  ]
+      function: () => {
+        // Cancel task update
+      },
+    },
+  ];
   const formButtonElems = formButtons.map((button) => (
     <input
       type="submit"
@@ -57,4 +58,17 @@ export default function UpdateTaskPopUp() {
       <div className="form-button-container">{formButtonElems}</div>
     </form>
   );
+}
+
+async function updateThisTask(title: String) {
+  // const title = .replace('/\s/g', '_');
+
+  console.log("Deleting task...");
+  const res = await fetch("http://localhost:3000/api/tasks/" + title, {
+    method: "PUT",
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to update task titled ${title}`);
+  }
 }
