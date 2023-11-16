@@ -12,11 +12,15 @@ export default async function TaskList({ tasklist_type }: TaskListType) {
   console.log(tasklist_type);
   console.log(tasks.Tasks);
   const task_elems = tasks.Tasks.map((task: any) => (
-    <Task
-      title={task.title}
-      description={task.description}
-      task_status={task.task_status}
-    />
+    <div>
+      <Task
+        title={task.title}
+        description={task.description}
+        task_status={task.task_status}
+        task_id={task._id}
+      />
+      {/* <p>{task._id}</p> */}
+    </div>
   ));
 
   /**

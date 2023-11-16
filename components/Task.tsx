@@ -3,9 +3,11 @@
 import { TaskType } from "@/types/TaskType";
 import { TfiTrash, TfiWrite } from "react-icons/tfi";
 import * as React from "react";
+import useState from 'react';
 
 
-export default function Task({ title, description }: TaskType) {
+export default function Task({ title, description, task_status, task_id }: TaskType) {
+  const [isDeleted, setIsDeleted] = useState.useState<Boolean>(false);
 
   return (
     <div className="flex-col justify-start bg-red-300 pl-2 pr-2 mb-3 rounded-lg border-2 border-red-400">
@@ -25,8 +27,9 @@ export default function Task({ title, description }: TaskType) {
   );
 
   async function deleteThisTask() {
+    setIsDeleted(true);
     console.log('Deleting task...')
-    const res = await fetch("http://localhost:3000/api/tasks/" + title, {
+    const res = await fetch("http://localhost:3000/api/tasks/" + task_id, {
       method: "DELETE",
     });
   

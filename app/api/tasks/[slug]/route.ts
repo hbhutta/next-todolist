@@ -19,7 +19,7 @@ export async function PUT(
   { params }: { params: { slug: string } }
 ) {
   const oldTitle = params.slug  // Replace any underscores with whitespace that was originally there
-  const { title, description, task_status } = request.json();
+  const { title, description, task_status, task_id } = request.json();
   try {
     await connectMongoDB();
     const filter = { title: oldTitle };
@@ -27,6 +27,7 @@ export async function PUT(
       title: title,
       description: description,
       task_status: task_status,
+      task_id: task_id
     };
     await Task.findOneAndUpdate(filter, update);
     return NextResponse.json(
@@ -53,18 +54,18 @@ export async function PUT(
  */
 export async function DELETE( // Done
   request: any,
-  { params }: { params: { slug: string } }
+  { params }: { params: { slug: any } }
 ) {
   console.log(params);
-  console.log(params.slug); // undefined
-  const toDeleteTitle = params.slug; //  params.slug.replace("_", "/s/g"); // Replace any underscores with whitespace that was originally there
+  console.log(params.slug); // task._id
+  const toDeleteId = params.slug; //  params.slug.replace("_", "/s/g"); // Replace any underscores with whitespace that was originally there
   try {
     await connectMongoDB();
-    const filter = { title: toDeleteTitle };
-    await Task.deleteOne(filter);
+    // const filter = { title: toDeleteTitle };
+    await Task.findByIdAndDelete(toDeleteId);
     return NextResponse.json(
       {
-        message: `[DELETE Success] Task titled ${toDeleteTitle} deleted. Recieved params: ${params}. Recieved slug: ${params.slug}.`,
+        message: `[DELETE Success] Task with ID: ${toDeleteId} deleted. Recieved params: ${params}. Recieved slug: ${params.slug}.`,
         // message: `Success, ${id}`,
       },
       { status: 201 }
@@ -72,7 +73,7 @@ export async function DELETE( // Done
   } catch (e) {
     return NextResponse.json(
       {
-        message: `[DELETE Error] Task titled ${toDeleteTitle} could not be deleted! Recieved params: ${params}. Recieved slug: ${params.slug}`,
+        message: `[DELETE Error] Task with ID: ${toDeleteId} could not be deleted! Recieved params: ${params}. Recieved slug: ${params.slug}`,
       },
       { status: 500 }
     );
